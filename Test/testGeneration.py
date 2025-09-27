@@ -51,8 +51,8 @@ def printWorldGrid(world):
     for i in world:
         print(i)
 
-def showWorld(world):
-    color={
+def afficher_monde(monde, echelle=5):
+    couleurs = {
         0: (200, 200, 200),
         1: (0, 50, 200),
         2: (200, 200, 0),
@@ -61,13 +61,14 @@ def showWorld(world):
         5: (50, 50, 25),
         6: (0, 0, 0)
     }
-    hauteur, largeur = len(world),len(world[0])
+
+    hauteur, largeur = len(monde), len(monde[0])
     image = Image.new("RGB", (largeur, hauteur))
     for y in range(hauteur):
         for x in range(largeur):
-            valeur = world[y][x]
-            couleur = color[valeur]
-            image.putpixel((x, y), couleur)
+            image.putpixel((x, y), couleurs[monde[y][x]])
+
+    image = image.resize((largeur * echelle, hauteur * echelle), Image.NEAREST)
     image.show()
 
 world=[[0,0,0]]
@@ -80,4 +81,4 @@ option=genDict(5)
 #print(d)
 world=generate(world,option,taille)
 #printWorldGrid(world)
-showWorld(world)
+afficher_monde(world)

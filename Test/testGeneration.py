@@ -8,7 +8,45 @@ def denominateurOptCommune(l1:list,l2:list)->list:
             if i==j:res.append(i)
     return res
 
-def generate(world,d:dict,taille):
+def generateSquareBase(world:list,d:dict,taille):
+    t=world
+    d_k=list(d.keys())
+    for i in range(taille):
+        if len(t)<=i:
+            t.append([])
+        if len(t[i])>i:
+            pass
+        else:
+            if i==0:
+                t[i].append(d_k[randint(0,len(d_k)-1)])
+            else:
+                t=ajouterLigne(t,d)
+                t=ajouterColonne(t,d)
+    return t
+                
+def ajouterLigne(t:list,d:dict):
+    length=len(t[0])
+    #print(t[-2],len(t),length)
+    for i in range(length):
+        if i==0:
+            t[-1].append(d[t[-2][i]][randint(0,len(d[t[-2][i]])-1)])
+        else:
+            possibility=denominateurOptCommune(d[t[-2][i]],d[t[-1][i-1]])
+            t[-1].append(possibility[randint(0,len(possibility)-1)])
+    return t
+
+def ajouterColonne(t,d):
+    length=len(t)
+    for i in range(length):
+        if i==0:
+            t[i].append(d[t[i][-1]][randint(0,len(d[t[i][-1]])-1)])
+        else:
+            possibility=denominateurOptCommune(d[t[i][-1]],d[t[i-1][i]])
+            t[i].append(possibility[randint(0,len(possibility)-1)])
+    return t
+
+
+def generate(world:list,d:dict,taille):
     t=world
     d_k=list(d.keys())
     for i in range(taille):
@@ -71,14 +109,16 @@ def afficher_monde(monde, echelle=5):
     image = image.resize((largeur * echelle, hauteur * echelle), Image.NEAREST)
     image.show()
 
-world=[[0,0,0]]
+world=[]
 taille=100
 #d={"r":"t","t":"t"}
 #print(list(d.keys()))
 option=genDict(5)
+#option={0: [0, 0, 1], 1: [0, 1, 1, 2], 2: [1, 2, 2, 2, 3], 3: [2, 3, 3, 3, 4], 4: [3, 4, 4, 5], 5: [4, 5, 5]}
 #print(option)
 #d=list(option.keys())
 #print(d)
-world=generate(world,option,taille)
+#world=generate(world,option,taille)
+world=generateSquareBase(world,option,taille)
 #printWorldGrid(world)
 afficher_monde(world)

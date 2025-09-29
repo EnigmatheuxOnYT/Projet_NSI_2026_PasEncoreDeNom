@@ -7,9 +7,6 @@ octaves = 2
 lacunarity = 2.0
 persistence = 1.2
 
-
-image_filepath= "noise.png"
-
 image=Image.new(mode="RGB", size=shape)
 
 for x in range(shape[0]):
@@ -27,4 +24,4 @@ for x in range(shape[0]):
         image.putpixel((x,y),(int(value*255),int(value*255),int(value*255)))
 
 
-image.save(image_filepath)
+image.show()

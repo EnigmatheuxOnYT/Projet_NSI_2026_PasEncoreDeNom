@@ -91,7 +91,7 @@ def printWorldGrid(world):
 
 def afficher_monde(monde, echelle=5):
     couleurs = {
-        0: (200, 200, 200),
+        0: (0, 25, 100),
         1: (0, 50, 200),
         2: (200, 200, 0),
         3: (50, 200, 50),
@@ -118,7 +118,7 @@ option=genDict(5)
 #print(option)
 #d=list(option.keys())
 #print(d)
-#world=generate(world,option,taille)
-world=generateSquareBase(world,option,taille)
+world=generate(world,option,taille)
+#world=generateSquareBase(world,option,taille)
 #printWorldGrid(world)
 afficher_monde(world)

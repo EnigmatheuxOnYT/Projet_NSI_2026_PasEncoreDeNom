@@ -29,7 +29,6 @@ def test():
     print('test')
     return None
 
-
 class Accueil:
     def __init__(self,ecran):
         self.ecran = ecran
@@ -62,8 +61,6 @@ class Accueil:
             self.dessiner_fenetre()
             self.horloge.tick(self.fps)
         
-
-    
 
 if __name__ == '__main__':
     pygame.init()

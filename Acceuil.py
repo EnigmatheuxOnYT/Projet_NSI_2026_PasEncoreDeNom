@@ -49,11 +49,11 @@ class Accueil:
                     self.running = False
     
     
-    def dessiner_fenetre (self):
+    def dessiner_fenetre (self): #dessine la fenêtre du jeu
         screen.fill((155,200,175))
         pygame.display.flip()
     
-    def lancer(self):
+    def lancer(self): #Lance le jeu
         self.running = True
 
         while self.running:
